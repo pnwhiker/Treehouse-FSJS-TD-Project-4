@@ -7,7 +7,6 @@
     constructor (phrase) {
          this.phrase = phrase;
     }
-    getRandomPhrase () {
-      let randomIndexValue = Math.random() * this.phrases
-    };
+   
+    
  }
