@@ -3,10 +3,22 @@
  * Game.js */
 
 
- class Phrase {
-    constructor (phrase) {
-         this.phrase = phrase;
-    }
-   
-    
- }
+
+ class Game {
+   constructor () {
+       this.missed = 0;
+       this.phrases = [
+           "AA",
+           "AB",
+           "AC",
+           "AD",
+           "AE",
+       ];
+       this.activePhrase = null;
+   }
+
+    getRandomPhrase = (this.phrases) {
+        let randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+
+   }
+}
