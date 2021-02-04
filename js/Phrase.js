@@ -8,5 +8,8 @@ class Phrase {
          this.phrase = phrase;
     }
    
+    addPhraseToDisplay () {
+         
+    }
     
  }
