@@ -17,7 +17,8 @@
        this.activePhrase = null;
    }
 
-    getRandomPhrase (phrases) {
-        let randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+    getRandomPhrase () {
+        let randomPhrase = this.phrases[Math.floor(Math.random() * this.phrases.length)];
+        return randomPhrase;
     }
 }

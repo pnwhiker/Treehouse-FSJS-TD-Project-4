@@ -10,6 +10,10 @@ const game = new Game();
 //     console.log(`Phrase ${index} - phrase: ${game.phrases[index]}`);
 // });
 
-function phraseLogger() {
-    console.log
-}
+function phraseLogger(phrase) {
+    console.log(`Phrase : ${phrase}`);
+};
+
+phraseLogger(game.getRandomPhrase());
+phraseLogger(game.getRandomPhrase());
+phraseLogger(game.getRandomPhrase());
