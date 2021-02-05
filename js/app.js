@@ -3,6 +3,10 @@
  * app.js */
 
 const game = new Game();
+let tiger = game.getRandomPhrase();
+console.log(tiger);
+
+
 
 
 
@@ -10,10 +14,10 @@ const game = new Game();
 //     console.log(`Phrase ${index} - phrase: ${game.phrases[index]}`);
 // });
 
-function phraseLogger(phrase) {
-    console.log(`Phrase : ${phrase}`);
-};
+// function phraseLogger(phrase) {
+//     console.log(`Phrase : ${phrase}`);
+// };
 
-phraseLogger(game.getRandomPhrase());
-phraseLogger(game.getRandomPhrase());
-phraseLogger(game.getRandomPhrase());
+// phraseLogger(game.getRandomPhrase());
+// phraseLogger(game.getRandomPhrase());
+// phraseLogger(game.getRandomPhrase());
