@@ -10,19 +10,27 @@ class Phrase {
    
     addPhraseToDisplay(inputPhrase) {
           let phraseUl = document.createElement('ul');
+          phraseUl.innerHTML = "";
           let phraseDiv = document.getElementById('phrase')
+          phraseDiv.innerHTML = "";
+          let li = document.createElement('li');
+          let stringToArray = inputPhrase.split("");
           
-          inputPhrase.forEach(letter => {
-               let li = `<li class  = "hide letter ${letter}">${letter}</li>`;
+          stringToArray.forEach(letter => {
+
+               li.innerHTML=`${letter}`;
                phraseUl.appendChild(li);
+               console.log(phraseUl);
 
           });
           phraseDiv.appendChild(phraseUl)
           return phraseDiv;
-
+          
      }
+
     
  };
+ 
 
 //  <div id="phrase" class="section">
 //     <ul>

@@ -3,8 +3,8 @@
  * app.js */
 
 const game = new Game();
-let tiger = game.getRandomPhrase();
-console.log(tiger);
+const phrase = new Phrase();
+console.log(phrase.addPhraseToDisplay("test"));
 
 
 
