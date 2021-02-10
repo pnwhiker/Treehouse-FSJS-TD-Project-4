@@ -13,14 +13,15 @@ class Phrase {
           phraseUl.innerHTML = "";
           let phraseDiv = document.getElementById('phrase')
           phraseDiv.innerHTML = "";
-          let li = document.createElement('li');
+          
           let stringToArray = inputPhrase.split("");
           
           stringToArray.forEach(letter => {
-
+               let li = document.createElement('li');
                li.innerHTML=`${letter}`;
+               li.className = `hide letter ${letter}`;
                phraseUl.appendChild(li);
-               console.log(phraseUl);
+               
 
           });
           phraseDiv.appendChild(phraseUl)
