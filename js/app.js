@@ -4,19 +4,7 @@
 
 const game = new Game();
 const phrase = new Phrase();
-console.log(phrase.addPhraseToDisplay(game.getRandomPhrase()));
+let randPhrase = game.getRandomPhrase();
+phrase.addPhraseToDisplay(randPhrase);
 
 
-
-
-// game.phrases.forEach((phrase, index) => {
-//     console.log(`Phrase ${index} - phrase: ${game.phrases[index]}`);
-// });
-
-// function phraseLogger(phrase) {
-//     console.log(`Phrase : ${phrase}`);
-// };
-
-// phraseLogger(game.getRandomPhrase());
-// phraseLogger(game.getRandomPhrase());
-// phraseLogger(game.getRandomPhrase());
