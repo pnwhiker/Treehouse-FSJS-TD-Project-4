@@ -28,7 +28,16 @@ class Phrase {
           return phraseDiv;
           
      }
+     checkLetter(inputPhrase) {
+          // check to see if input letter is equal to
+          // any letter in the phrase
+     }
 
+     showMatchedLetter(letter) {
+          // reveal letter on board that 
+          // matches the players selection 
+
+     }
     
  };
  
