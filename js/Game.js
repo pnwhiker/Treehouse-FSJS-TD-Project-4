@@ -26,8 +26,8 @@
         const overlayDiv =  document.getElementById('overlay');
         overlayDiv.style.display = 'none';
         this.activePhrase = this.getRandomPhrase(this.phrases)
-        phrase.addPhraseToDisplay(randPhrase);
-        
+        phrase.addPhraseToDisplay(this.activePhrase);
+
        
 
     }
