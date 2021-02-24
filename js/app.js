@@ -5,6 +5,8 @@
 const game = new Game();
 const phrase = new Phrase();
 let randPhrase = game.getRandomPhrase();
-phrase.addPhraseToDisplay(randPhrase);
+
+
+
 
 

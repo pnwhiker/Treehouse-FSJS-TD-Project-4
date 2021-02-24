@@ -21,4 +21,14 @@
         let randomPhrase = this.phrases[Math.floor(Math.random() * this.phrases.length)];
         return randomPhrase;
     }
+
+    startGame () {
+        const overlayDiv =  document.getElementById('overlay');
+        overlayDiv.style.display = 'none';
+        this.activePhrase = this.getRandomPhrase(this.phrases)
+        phrase.addPhraseToDisplay(randPhrase);
+        
+       
+
+    }
 }
