@@ -31,4 +31,17 @@
        
 
     }
+    checkForWin () {
+        //checks to see if player has revealed all of the letters in the active phrase
+    }
+
+    removeLife () {
+        // removes a life from the scoreboard and replaces the pic w/ alt pic of heart
+    }
+
+    gameOver () {
+        //display original start screen overlay, display win / loss message using the associated CSS class
+        
+    }
+
 }
