@@ -16,21 +16,34 @@ class Phrase {
           
           let stringToArray = inputPhrase.split("");
           
+          
           stringToArray.forEach(letter => {
-               let li = document.createElement('li');
-               li.innerHTML=`${letter}`;
-               li.className = `hide letter ${letter}`;
-               phraseUl.appendChild(li);
+               if (letter === " ") {
+                    let li = document.createElement('li');
+                    li.className = `space`;
+                    phraseUl.appendChild(li);
+               } else {
+                    let li = document.createElement('li');
+                    li.innerHTML=`${letter}`;
+                    li.className = `hide letter ${letter}`;
+                    phraseUl.appendChild(li);
+               }
                
 
           });
+          console.log(phraseUl);
           phraseDiv.appendChild(phraseUl)
           return phraseDiv;
           
      }
-     checkLetter(inputPhrase) {
+     checkLetter(inputPhrase, inputLetter) {
           // check to see if input letter is equal to
           // any letter in the phrase
+          inputPhrase = inputPhrase.toLowerCase() 
+          let phraseArray = inputPhrase.split("");
+          //console.log(phraseArray);
+          
+
      }
 
      showMatchedLetter(letter) {

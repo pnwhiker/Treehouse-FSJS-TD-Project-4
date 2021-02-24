@@ -8,11 +8,11 @@
    constructor () {
        this.missed = 0;
        this.phrases = [
-           "AA",
-           "AB",
-           "AC",
-           "AD",
-           "AE",
+           "the dog runs",
+           "the cat meows",
+           "the bird chirps",
+           "the lion roars",
+           "the cow moos",
        ];
        this.activePhrase = null;
    }
@@ -27,21 +27,38 @@
         overlayDiv.style.display = 'none';
         this.activePhrase = this.getRandomPhrase(this.phrases)
         phrase.addPhraseToDisplay(this.activePhrase);
-
-       
-
-    }
-    checkForWin () {
-        //checks to see if player has revealed all of the letters in the active phrase
     }
 
-    removeLife () {
-        // removes a life from the scoreboard and replaces the pic w/ alt pic of heart
+    handleInteraction () {
+        const qwertyDiv = document.getElementById('qwerty');
+        qwertyDiv.addEventListener('click', (event) => {
+            // clicked letter must be captured
+            let userGuess = event.target.innerHTML;
+
+            //clicked letter checked against phrase
+
+            //if userGuess is in phrase, display in phrase
+
+            // else remove 1 life from scoreboard
+
+            // if lives = 0 or if checkwin is true, reveal all letters
+
+            // if game is won / lost a message should display on screen
+
+        })
     }
 
-    gameOver () {
-        //display original start screen overlay, display win / loss message using the associated CSS class
+    // checkForWin () {
+    //     //checks to see if player has revealed all of the letters in the active phrase
+    // }
+
+    // removeLife () {
+    //     // removes a life from the scoreboard and replaces the pic w/ alt pic of heart
+    // }
+
+    // gameOver () {
+    //     //display original start screen overlay, display win / loss message using the associated CSS class
         
-    }
+    // }
 
 }

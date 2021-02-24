@@ -9,6 +9,8 @@ let startButton = document.getElementById('btn__reset')
 startButton.addEventListener('click', () => {
     game = new Game();
     game.startGame();
+    game.handleInteraction();
+    
 })
 
 
