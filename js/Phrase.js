@@ -31,7 +31,7 @@ class Phrase {
                
 
           });
-          console.log(phraseUl);
+          //console.log(phraseUl);
           phraseDiv.appendChild(phraseUl)
           return phraseDiv;
           
@@ -41,7 +41,6 @@ class Phrase {
           // any letter in the phrase
           inputPhrase = inputPhrase.toLowerCase() 
           let phraseArray = inputPhrase.split("");
-          //console.log(phraseArray);
           
 
      }

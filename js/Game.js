@@ -34,7 +34,7 @@
         qwertyDiv.addEventListener('click', (event) => {
             // clicked letter must be captured
             let userGuess = event.target.innerHTML;
-
+            phrase.checkLetter(this.activePhrase, userGuess)
             //clicked letter checked against phrase
 
             //if userGuess is in phrase, display in phrase
