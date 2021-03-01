@@ -31,25 +31,18 @@ class Phrase {
                
 
           });
-          console.log(phraseUl);
+          //console.log(phraseUl);
           phraseDiv.appendChild(phraseUl)
           return phraseDiv;
           
      }
-
-     console.log(phraseDiv);
-     
-
      checkLetter(inputPhrase, inputLetter) {
           // check to see if input letter is equal to
           // any letter in the phrase
           inputPhrase = inputPhrase.toLowerCase() 
           let phraseArray = inputPhrase.split("");
-
           
-          phraseArray.forEach((letter) => {
 
-          })
      }
 
      showMatchedLetter(letter) {

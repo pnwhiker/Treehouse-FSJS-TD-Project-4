@@ -27,18 +27,14 @@
         overlayDiv.style.display = 'none';
         this.activePhrase = this.getRandomPhrase(this.phrases)
         phrase.addPhraseToDisplay(this.activePhrase);
-        return this.activePhrase;
     }
 
     handleInteraction () {
         const qwertyDiv = document.getElementById('qwerty');
         qwertyDiv.addEventListener('click', (event) => {
-            let userGuess = event.target.innerHTML;
             // clicked letter must be captured
+            let userGuess = event.target.innerHTML;
             phrase.checkLetter(this.activePhrase, userGuess)
-            
-            
-            
             //clicked letter checked against phrase
 
             //if userGuess is in phrase, display in phrase
