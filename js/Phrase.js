@@ -37,19 +37,19 @@ class Phrase {
           
      }
      checkLetter(inputPhrase, inputLetter) {
-          // check to see if input letter is equal to
-          // any letter in the phrase
-          inputPhrase = inputPhrase.toLowerCase() 
+
+          inputPhrase = inputPhrase.toLowerCase(); 
           let phraseArray = inputPhrase.split("");
+
+          phraseArray.forEach ((letter) => {
+               if (letter == inputLetter) {
+
+               }
+          })
           
 
      }
 
-     showMatchedLetter(letter) {
-          // reveal letter on board that 
-          // matches the players selection 
-
-     }
     
  };
  
