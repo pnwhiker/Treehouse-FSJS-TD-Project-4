@@ -3,6 +3,7 @@
  * Game.js */
 
 let qwertyDiv = document.getElementById('qwerty');
+let phraseListItems = null;
 
 
  class Game {
@@ -24,27 +25,50 @@ let qwertyDiv = document.getElementById('qwerty');
     }
 
     startGame () {
+
         const overlayDiv =  document.getElementById('overlay');
         overlayDiv.style.display = 'none';
+
         this.activePhrase = this.getRandomPhrase(this.phrases)
+        console.log(this.activePhrase);
         phrase.addPhraseToDisplay(this.activePhrase);
+
+        phraseListItems = document.getElementsByClassName('hide')
+        console.log(phraseListItems);
+        
     }
 
 
+    checkForWin () {
+        //checks to see if player has revealed all of the letters in the active phrase
+    }
+
+    removeLife () {
+        
+    }
+
+    gameOver () {
+        //display original start screen overlay, display win / loss message using the associated CSS class
+        
+    }
 
     handleInteraction () {
         qwertyDiv.addEventListener('click', (event) => {
+            let letterButton = event.target;
+            
             // clicked letter must be captured - DONE
             let userGuess = event.target.textContent; 
             // check letter guessed for true vs. false inside randPhrase
-            phrase.checkLetter(this.activePhrase, userGuess);
+            let checkLetter = phrase.checkLetter(this.activePhrase, userGuess);
 
-            //clicked letter checked against phrase
-
-            //if userGuess is in phrase, display in phrase
-
-            // else remove 1 life from scoreboard
-
+            if (checkLetter) {
+                 phrase.showMatchedLetter(phraseListItems, userGuess)
+                 letterButton.disabled = true;
+                 // game.checkForWin()
+            } else {
+                letterButton.classList.add('wrong')
+                letterButton.disabled = "true";
+            }
             // if lives = 0 or if checkwin is true, reveal all letters
 
             // if game is won / lost a message should display on screen
@@ -52,17 +76,5 @@ let qwertyDiv = document.getElementById('qwerty');
         })
     }
 
-    // checkForWin () {
-    //     //checks to see if player has revealed all of the letters in the active phrase
-    // }
-
-    // removeLife () {
-    //     // removes a life from the scoreboard and replaces the pic w/ alt pic of heart
-    // }
-
-    // gameOver () {
-    //     //display original start screen overlay, display win / loss message using the associated CSS class
-        
-    // }
 
 }

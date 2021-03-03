@@ -37,19 +37,26 @@ class Phrase {
           
      }
      checkLetter(inputPhrase, inputLetter) {
-
-          inputPhrase = inputPhrase.toLowerCase(); 
-          let phraseArray = inputPhrase.split("");
-
-          phraseArray.forEach ((letter) => {
-               if (letter == inputLetter) {
-
-               }
-          })
-          
-
+          if (inputPhrase.includes(inputLetter)) {
+               console.log(`Mystery Phrase ${inputPhrase} includes user guess: ${inputLetter}`);
+               return true;
+          } else {
+               return false; 
+          }; 
      }
 
+     showMatchedLetter(inputArr, inputLetter) {
+          [...inputArr].forEach((li) => {
+               if (li.textContent == inputLetter) {
+                    li.classList.remove('hide');
+                    li.classList.add('show');
+               };
+          })
+     }
+
+     checkForWin() {
+          
+     }
     
  };
  
