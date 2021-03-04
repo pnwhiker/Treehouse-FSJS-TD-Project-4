@@ -4,6 +4,7 @@
 
 let qwertyDiv = document.getElementById('qwerty');
 let phraseListItems = null;
+let lifeCount = 5;
 
 
  class Game {
@@ -68,6 +69,9 @@ let phraseListItems = null;
             } else {
                 letterButton.classList.add('wrong')
                 letterButton.disabled = "true";
+                lifeCount -= 1; 
+                this.removeLife();
+                
             }
             // if lives = 0 or if checkwin is true, reveal all letters
 
