@@ -5,6 +5,8 @@
 let qwertyDiv = document.getElementById('qwerty');
 let phraseListItems = null;
 let lifeCount = 5;
+let triesArray = document.getElementsByClassName('tries');
+
 
 
  class Game {
@@ -18,6 +20,7 @@ let lifeCount = 5;
            "the cow moos",
        ];
        this.activePhrase = null;
+       
    }
 
     getRandomPhrase () {
@@ -32,10 +35,11 @@ let lifeCount = 5;
 
         this.activePhrase = this.getRandomPhrase(this.phrases)
         console.log(this.activePhrase);
+        console.log(lifeCount)
         phrase.addPhraseToDisplay(this.activePhrase);
 
         phraseListItems = document.getElementsByClassName('hide')
-        console.log(phraseListItems);
+        // console.log(phraseListItems);
         
     }
 
@@ -44,8 +48,11 @@ let lifeCount = 5;
         //checks to see if player has revealed all of the letters in the active phrase
     }
 
-    removeLife () {
-        
+    removeLife (arr, livesRemaining) {
+        [...arr].forEach((life) => {
+            console.log(arr[arr.length - livesRemaining]);
+            console.log(livesRemaining);
+        })
     }
 
     gameOver () {
@@ -69,9 +76,10 @@ let lifeCount = 5;
             } else {
                 letterButton.classList.add('wrong')
                 letterButton.disabled = "true";
-                lifeCount -= 1; 
-                this.removeLife();
-                
+                lifeCount -= 1;
+                this.removeLife(triesArray, lifeCount);
+                if (lifeCount == 0)
+                    this.gameOver();
             }
             // if lives = 0 or if checkwin is true, reveal all letters
 
