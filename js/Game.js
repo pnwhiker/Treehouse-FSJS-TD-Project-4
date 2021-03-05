@@ -6,6 +6,7 @@ let qwertyDiv = document.getElementById('qwerty');
 let phraseListItems = null;
 let lifeCount = 5;
 let triesArray = document.getElementsByClassName('tries');
+let heartImgs = document.querySelectorAll("li > img");
 
 
 
@@ -48,17 +49,28 @@ let triesArray = document.getElementsByClassName('tries');
         //checks to see if player has revealed all of the letters in the active phrase
     }
 
-    removeLife (arr, livesRemaining) {
-        [...arr].forEach((life) => {
-            console.log(arr[arr.length - livesRemaining]);
-            console.log(livesRemaining);
-        })
-    }
+    removeLife (livesRemaining) {
+      if (livesRemaining == 4) {
+        heartImgs[4].src = "images/lostHeart.png";
+      } else if (livesRemaining == 3) {
+        heartImgs[4].src = "images/lostHeart.png";
+        heartImgs[3].src = "images/lostHeart.png";
+      } else if (livesRemaining == 2) {
+        heartImgs[4].src = "images/lostHeart.png";
+        heartImgs[3].src = "images/lostHeart.png";
+        heartImgs[2].src = "images/lostHeart.png";
+      } else if (livesRemaining == 1) {
+        heartImgs[4].src = "images/lostHeart.png";
+        heartImgs[3].src = "images/lostHeart.png";
+        heartImgs[2].src = "images/lostHeart.png";
+        heartImgs[1].src = "images/lostHeart.png";
+      };
+    };
 
     gameOver () {
         //display original start screen overlay, display win / loss message using the associated CSS class
-        
-    }
+        console.log('GAME OVER')  
+    };
 
     handleInteraction () {
         qwertyDiv.addEventListener('click', (event) => {
@@ -77,9 +89,16 @@ let triesArray = document.getElementsByClassName('tries');
                 letterButton.classList.add('wrong')
                 letterButton.disabled = "true";
                 lifeCount -= 1;
-                this.removeLife(triesArray, lifeCount);
-                if (lifeCount == 0)
+
+                if (lifeCount == 0){
+
                     this.gameOver();
+
+                } else {
+                    
+                    this.removeLife(lifeCount);
+                };
+                
             }
             // if lives = 0 or if checkwin is true, reveal all letters
 
