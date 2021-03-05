@@ -38,7 +38,6 @@ class Phrase {
      }
      checkLetter(inputPhrase, inputLetter) {
           if (inputPhrase.includes(inputLetter)) {
-               console.log(`Mystery Phrase ${inputPhrase} includes user guess: ${inputLetter}`);
                return true;
           } else {
                return false; 
