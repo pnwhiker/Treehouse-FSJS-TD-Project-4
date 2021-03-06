@@ -40,14 +40,19 @@ let heartImgs = document.querySelectorAll("li > img");
         phrase.addPhraseToDisplay(this.activePhrase);
 
         phraseListItems = document.getElementsByClassName('hide')
-        // console.log(phraseListItems);
+        
         
     }
 
 
-    checkForWin () {
-        //checks to see if player has revealed all of the letters in the active phrase
-    }
+
+    checkForWin (liCollection) {
+        [...liCollection].forEach((li) => {
+            console.log(li.classList.value);
+        });
+    };
+        
+ 
 
     removeLife (livesRemaining) {
       if (livesRemaining == 4) {
@@ -75,16 +80,14 @@ let heartImgs = document.querySelectorAll("li > img");
     handleInteraction () {
         qwertyDiv.addEventListener('click', (event) => {
             let letterButton = event.target;
-            
-            // clicked letter must be captured - DONE
-            let userGuess = event.target.textContent; 
-            // check letter guessed for true vs. false inside randPhrase
+            let userGuess = event.target.textContent;
             let checkLetter = phrase.checkLetter(this.activePhrase, userGuess);
+            this.checkForWin(phraseListItems);
 
             if (checkLetter) {
                  phrase.showMatchedLetter(phraseListItems, userGuess)
                  letterButton.disabled = true;
-                 // game.checkForWin()
+                 
             } else {
                 letterButton.classList.add('wrong')
                 letterButton.disabled = "true";
