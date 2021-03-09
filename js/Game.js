@@ -47,10 +47,10 @@ let heartImgs = document.querySelectorAll("li > img");
 
 
     checkForWin (liCollection) {
-        let checkRegister = [1, 2, 3];
-        console.log(typeof checkRegister)
-
-
+        let classCheck = (li) => li.classList.value.includes("show");
+        if ([...liCollection].every(classCheck)) {
+            this.gameOver();
+        };
     };
  
 
@@ -82,12 +82,13 @@ let heartImgs = document.querySelectorAll("li > img");
             let letterButton = event.target;
             let userGuess = event.target.textContent;
             let checkLetter = phrase.checkLetter(this.activePhrase, userGuess);
-            this.checkForWin(phraseListItems);
+            
         
 
             if (checkLetter) {
                  phrase.showMatchedLetter(phraseListItems, userGuess)
                  letterButton.disabled = true;
+                 this.checkForWin(phraseListItems);
                  
             } else {
                 letterButton.classList.add('wrong')
