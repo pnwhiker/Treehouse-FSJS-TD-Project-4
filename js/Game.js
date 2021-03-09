@@ -47,11 +47,11 @@ let heartImgs = document.querySelectorAll("li > img");
 
 
     checkForWin (liCollection) {
-        [...liCollection].forEach((li) => {
-            console.log(li.classList.value);
-        });
+        let checkRegister = [1, 2, 3];
+        console.log(typeof checkRegister)
+
+
     };
-        
  
 
     removeLife (livesRemaining) {
@@ -83,6 +83,7 @@ let heartImgs = document.querySelectorAll("li > img");
             let userGuess = event.target.textContent;
             let checkLetter = phrase.checkLetter(this.activePhrase, userGuess);
             this.checkForWin(phraseListItems);
+        
 
             if (checkLetter) {
                  phrase.showMatchedLetter(phraseListItems, userGuess)
