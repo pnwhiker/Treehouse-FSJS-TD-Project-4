@@ -7,7 +7,7 @@ let phraseListItems = null;
 let lifeCount = 5;
 let triesArray = document.getElementsByClassName('tries');
 let heartImgs = document.querySelectorAll("li > img");
-
+const overlayDiv =  document.getElementById('overlay');
 
 
  class Game {
@@ -31,7 +31,6 @@ let heartImgs = document.querySelectorAll("li > img");
 
     startGame () {
 
-        const overlayDiv =  document.getElementById('overlay');
         overlayDiv.style.display = 'none';
 
         this.activePhrase = this.getRandomPhrase(this.phrases)
@@ -49,7 +48,7 @@ let heartImgs = document.querySelectorAll("li > img");
     checkForWin (liCollection) {
         let classCheck = (li) => li.classList.value.includes("show");
         if ([...liCollection].every(classCheck)) {
-            this.gameOver();
+            this.gameOver("WIN");
         };
     };
  
@@ -69,12 +68,31 @@ let heartImgs = document.querySelectorAll("li > img");
         heartImgs[3].src = "images/lostHeart.png";
         heartImgs[2].src = "images/lostHeart.png";
         heartImgs[1].src = "images/lostHeart.png";
-      };
+      } else if (livesRemaining == 0) {
+        heartImgs[4].src = "images/lostHeart.png";
+        heartImgs[3].src = "images/lostHeart.png";
+        heartImgs[2].src = "images/lostHeart.png";
+        heartImgs[1].src = "images/lostHeart.png";
+        heartImgs[0].src = "images/lostHeart.png";
+      };;
     };
 
-    gameOver () {
+    gameOver (endgameStatus) {
+
+        if (endgameStatus == 'WIN') {
+            //console.log('endgame win status fired')
+            overlayDiv.classList = "win"
+            overlayDiv.style.display = "flex";
+        }
+
+         else if (endgameStatus == 'LOSE') {
+            //console.log('endgame lose status fired')
+            overlayDiv.classList = "lose"
+            overlayDiv.style.display = "flex";
+        }
         //display original start screen overlay, display win / loss message using the associated CSS class
-        console.log('GAME OVER')  
+        console.log('GAME OVER')
+
     };
 
     handleInteraction () {
@@ -88,7 +106,9 @@ let heartImgs = document.querySelectorAll("li > img");
             if (checkLetter) {
                  phrase.showMatchedLetter(phraseListItems, userGuess)
                  letterButton.disabled = true;
-                 this.checkForWin(phraseListItems);
+                 if(this.checkForWin(phraseListItems)) {
+                    this.gameOver("WIN");
+                 };
                  
             } else {
                 letterButton.classList.add('wrong')
@@ -96,8 +116,8 @@ let heartImgs = document.querySelectorAll("li > img");
                 lifeCount -= 1;
 
                 if (lifeCount == 0){
-
-                    this.gameOver();
+                    this.removeLife(lifeCount);
+                    this.gameOver("LOSE");
 
                 } else {
                     
