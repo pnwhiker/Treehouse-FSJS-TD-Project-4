@@ -16,7 +16,6 @@ class Phrase {
           
           let stringToArray = inputPhrase.split("");
           
-          
           stringToArray.forEach(letter => {
                if (letter === " ") {
                     let li = document.createElement('li');
@@ -28,21 +27,21 @@ class Phrase {
                     li.className = `hide letter ${letter}`;
                     phraseUl.appendChild(li);
                }
-               
-
           });
+
           //console.log(phraseUl);
           phraseDiv.appendChild(phraseUl)
           return phraseDiv;
           
-     }
+     };
+
      checkLetter(inputPhrase, inputLetter) {
           if (inputPhrase.includes(inputLetter)) {
                return true;
           } else {
                return false; 
           }; 
-     }
+     };
 
      showMatchedLetter(inputArr, inputLetter) {
           [...inputArr].forEach((li) => {
@@ -51,10 +50,6 @@ class Phrase {
                     li.classList.add('show');
                };
           })
-     }
-
-     checkForWin() {
-          
-     }
+     };
     
  };

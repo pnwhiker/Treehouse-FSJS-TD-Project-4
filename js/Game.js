@@ -8,6 +8,7 @@ let lifeCount = 5;
 let triesArray = document.getElementsByClassName('tries');
 let heartImgs = document.querySelectorAll("li > img");
 const overlayDiv =  document.getElementById('overlay');
+let gameOverMessageBanner = document.getElementById('game-over-message');
 
 
  class Game {
@@ -32,18 +33,13 @@ const overlayDiv =  document.getElementById('overlay');
     startGame () {
 
         overlayDiv.style.display = 'none';
-
         this.activePhrase = this.getRandomPhrase(this.phrases)
         console.log(this.activePhrase);
         console.log(lifeCount)
         phrase.addPhraseToDisplay(this.activePhrase);
-
         phraseListItems = document.getElementsByClassName('hide')
-        
-        
+             
     }
-
-
 
     checkForWin (liCollection) {
         let classCheck = (li) => li.classList.value.includes("show");
@@ -83,25 +79,24 @@ const overlayDiv =  document.getElementById('overlay');
             //console.log('endgame win status fired')
             overlayDiv.classList = "win"
             overlayDiv.style.display = "flex";
-        }
+            gameOverMessageBanner.textContent = "Congratulations, you have Won!";
 
-         else if (endgameStatus == 'LOSE') {
+        } else if (endgameStatus == 'LOSE') {
             //console.log('endgame lose status fired')
             overlayDiv.classList = "lose"
             overlayDiv.style.display = "flex";
+            gameOverMessageBanner.textContent = "You were unsuccessful, keep practicing!";
         }
-        //display original start screen overlay, display win / loss message using the associated CSS class
-        console.log('GAME OVER')
+        // console.log('GAME OVER')
 
     };
 
     handleInteraction () {
+
         qwertyDiv.addEventListener('click', (event) => {
             let letterButton = event.target;
             let userGuess = event.target.textContent;
             let checkLetter = phrase.checkLetter(this.activePhrase, userGuess);
-            
-        
 
             if (checkLetter) {
                  phrase.showMatchedLetter(phraseListItems, userGuess)
@@ -125,12 +120,8 @@ const overlayDiv =  document.getElementById('overlay');
                 };
                 
             }
-            // if lives = 0 or if checkwin is true, reveal all letters
-
-            // if game is won / lost a message should display on screen
-
+        
         })
     }
-
 
 }
