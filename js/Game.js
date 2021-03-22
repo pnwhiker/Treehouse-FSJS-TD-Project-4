@@ -52,6 +52,19 @@
 
     };
 
+    showMatchedLetter(matchedLetter) {
+        let phraseList = document.querySelectorAll('li.letter');
+        phraseList = Array.from(phraseList);
+        console.log(phraseList);
+        phraseList.forEach(listItem => {
+            if (listItem.innerHTML == matchedLetter ) {
+                listItem.classList.remove('hide')
+                listItem.classList.add('show');
+            }
+        });
+
+    }
+
     handleInteraction () {
         let qwertyDiv = document.getElementById('qwerty')
         
@@ -60,14 +73,14 @@
             let letterInput = e.target.innerText;
             console.log(letterInput)
             if (this.activePhrase.checkLetter(this.activePhrase.phrase, letterInput)) {
-
+                console.log(letterInput + " is included");
+                this.showMatchedLetter(letterInput);
             } else {
-
+                console.log(letterInput + " is not included");
             };
 
         });
         
-
 
     };
 
