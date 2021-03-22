@@ -5,18 +5,18 @@
 
 class Phrase {
     constructor (phrase) {
-         this.phrase = phrase;
+         this.phrase = phrase.toLowerCase();
     }
    
-    addPhraseToDisplay(inputPhrase) {
+    addPhraseToDisplay(phrase) {
           let phraseUl = document.createElement('ul');
           phraseUl.innerHTML = "";
           let phraseDiv = document.getElementById('phrase')
           phraseDiv.innerHTML = "";
           
-          let stringToArray = inputPhrase.split("");
+          phrase = phrase.split("")
           
-          stringToArray.forEach(letter => {
+          phrase.forEach(letter => {
                if (letter === " ") {
                     let li = document.createElement('li');
                     li.className = `space`;
@@ -28,13 +28,9 @@ class Phrase {
                     phraseUl.appendChild(li);
                }
           });
-
-          //console.log(phraseUl);
-          phraseDiv.appendChild(phraseUl)
-          return phraseDiv;
-          
+          phraseDiv.appendChild(phraseUl);
      };
-
+     
      checkLetter(inputPhrase, inputLetter) {
           if (inputPhrase.includes(inputLetter)) {
                return true;
@@ -43,13 +39,18 @@ class Phrase {
           }; 
      };
 
-     showMatchedLetter(inputArr, inputLetter) {
-          [...inputArr].forEach((li) => {
-               if (li.textContent == inputLetter) {
-                    li.classList.remove('hide');
-                    li.classList.add('show');
-               };
-          })
-     };
+};
+
+
+
+
+//      showMatchedLetter(inputArr, inputLetter) {
+//           [...inputArr].forEach((li) => {
+//                if (li.textContent == inputLetter) {
+//                     li.classList.remove('hide');
+//                     li.classList.add('show');
+//                };
+//           })
+//      };
     
- };
+
