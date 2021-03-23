@@ -11,7 +11,7 @@
            new Phrase("the bird chirps"),
            new Phrase("the mouse squeaks"),
            new Phrase("the cat meows"),
-           new Phrase("the bog barks"),
+           new Phrase("the dog barks"),
            new Phrase("the hen clucks"),
            ];
        this.activePhrase = null;
@@ -40,7 +40,19 @@
     
 
     checkForWin () {
-  
+        let phraseList = document.querySelectorAll('li.letter')
+        phraseList = Array.from(phraseList);
+        function isVisible (li) {
+            return li.classList.contains('show');
+        }
+        if (phraseList.every(isVisible)) {
+            console.log('all revealed')
+            return true;
+        } else {
+            console.log('NOT all revealed')
+            return false
+            
+        }
     };
  
 
@@ -55,7 +67,7 @@
     showMatchedLetter(matchedLetter) {
         let phraseList = document.querySelectorAll('li.letter');
         phraseList = Array.from(phraseList);
-        console.log(phraseList);
+        //console.log(phraseList);
         phraseList.forEach(listItem => {
             if (listItem.innerHTML == matchedLetter ) {
                 listItem.classList.remove('hide')
@@ -70,11 +82,13 @@
         
         
         qwertyDiv.addEventListener("click", (e) => {
+            
             let letterInput = e.target.innerText;
-            console.log(letterInput)
+            //console.log(letterInput)
             if (this.activePhrase.checkLetter(this.activePhrase.phrase, letterInput)) {
                 console.log(letterInput + " is included");
                 this.showMatchedLetter(letterInput);
+                this.checkForWin();
             } else {
                 console.log(letterInput + " is not included");
             };
