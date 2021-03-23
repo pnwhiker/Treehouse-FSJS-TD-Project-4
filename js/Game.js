@@ -2,7 +2,8 @@
  * Project 4 - OOP Game App
  * Game.js */
 
-
+let lifeCount = 5;
+console.log(lifeHearts);
 
  class Game {
    constructor () {
@@ -55,9 +56,11 @@
         }
     };
  
+    
 
     removeLife (livesRemaining) {
-     
+        let lifeHearts = Array.from(document.querySelectorAll('img[alt="Heart Icon"]'));
+        // LEFT OFF HERE :)
     };
 
     gameOver () {
@@ -90,6 +93,8 @@
                 this.showMatchedLetter(letterInput);
                 this.checkForWin();
             } else {
+                lifeCount -= lifeCount;
+                this.removeLife(lifeCount)
                 console.log(letterInput + " is not included");
             };
 
