@@ -4,7 +4,7 @@
 
 let lifeCount = 5;
 let lifeHearts = Array.from(document.querySelectorAll('img[alt="Heart Icon"]'));
-
+const overlayDiv = document.getElementById('overlay');
 
  class Game {
    constructor () {
@@ -29,7 +29,6 @@ let lifeHearts = Array.from(document.querySelectorAll('img[alt="Heart Icon"]'));
 
     startGame () {
 
-        const overlayDiv = document.getElementById('overlay');
         overlayDiv.style.display = 'none';
         this.activePhrase = this.getRandomPhrase();
         this.activePhrase.addPhraseToDisplay(this.activePhrase.phrase)
@@ -76,12 +75,19 @@ let lifeHearts = Array.from(document.querySelectorAll('img[alt="Heart Icon"]'));
             lifeHearts[2].src = "images/lostHeart.png";
             lifeHearts[1].src = "images/lostHeart.png";
             lifeHearts[0].src = "images/lostHeart.png";
+            this.gameOver('lose');
         }
     };
 
 
-    gameOver () {
-
+    gameOver (endGameState) {
+        if (endGameState == 'lose') {
+            overlayDiv.className= 'lose';
+            overlayDiv.style.display = 'block';
+        } else if (endGameState == 'win') {
+            overlayDiv.className= 'win';
+            overlayDiv.style.display = 'block';
+        }
     };
 
 
