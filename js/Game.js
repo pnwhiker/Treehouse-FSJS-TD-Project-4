@@ -5,6 +5,7 @@
 let lifeCount = 5;
 let lifeHearts = Array.from(document.querySelectorAll('img[alt="Heart Icon"]'));
 const overlayDiv = document.getElementById('overlay');
+let gameOverMessage = document.getElementById('game-over-message');
 
  class Game {
    constructor () {
@@ -84,9 +85,11 @@ const overlayDiv = document.getElementById('overlay');
         if (endGameState == 'lose') {
             overlayDiv.className= 'lose';
             overlayDiv.style.display = 'block';
+            gameOverMessage.innerHTML = "Better Luck Next Time! Please Play Again :)"
         } else if (endGameState == 'win') {
             overlayDiv.className= 'win';
             overlayDiv.style.display = 'block';
+            gameOverMessage.innerHTML = "You Are Victorious! Please Play Again :)"
         }
     };
 
