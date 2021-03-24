@@ -3,7 +3,8 @@
  * Game.js */
 
 let lifeCount = 5;
-console.log(lifeHearts);
+let lifeHearts = Array.from(document.querySelectorAll('img[alt="Heart Icon"]'));
+
 
  class Game {
    constructor () {
@@ -26,19 +27,15 @@ console.log(lifeHearts);
     };
 
 
-
     startGame () {
 
         const overlayDiv = document.getElementById('overlay');
         overlayDiv.style.display = 'none';
-
         this.activePhrase = this.getRandomPhrase();
         this.activePhrase.addPhraseToDisplay(this.activePhrase.phrase)
         
-             
     }
 
-    
 
     checkForWin () {
         let phraseList = document.querySelectorAll('li.letter')
@@ -56,16 +53,37 @@ console.log(lifeHearts);
         }
     };
  
-    
 
     removeLife (livesRemaining) {
-        let lifeHearts = Array.from(document.querySelectorAll('img[alt="Heart Icon"]'));
         // LEFT OFF HERE :)
+        if (livesRemaining == 4) {
+            lifeHearts[4].src = "images/lostHeart.png"
+        } else if (livesRemaining == 3) {
+            lifeHearts[4].src = "images/lostHeart.png"
+            lifeHearts[3].src = "images/lostHeart.png"
+        } else if (livesRemaining == 2) {
+            lifeHearts[4].src = "images/lostHeart.png"
+            lifeHearts[3].src = "images/lostHeart.png"
+            lifeHearts[2].src = "images/lostHeart.png"
+        } else if (livesRemaining == 1) {
+            lifeHearts[4].src = "images/lostHeart.png";
+            lifeHearts[3].src = "images/lostHeart.png";
+            lifeHearts[2].src = "images/lostHeart.png";
+            lifeHearts[1].src = "images/lostHeart.png";
+        } else if (livesRemaining == 0) {
+            lifeHearts[4].src = "images/lostHeart.png";
+            lifeHearts[3].src = "images/lostHeart.png";
+            lifeHearts[2].src = "images/lostHeart.png";
+            lifeHearts[1].src = "images/lostHeart.png";
+            lifeHearts[0].src = "images/lostHeart.png";
+        }
     };
+
 
     gameOver () {
 
     };
+
 
     showMatchedLetter(matchedLetter) {
         let phraseList = document.querySelectorAll('li.letter');
@@ -81,21 +99,25 @@ console.log(lifeHearts);
     }
 
     handleInteraction () {
+
         let qwertyDiv = document.getElementById('qwerty')
-        
-        
         qwertyDiv.addEventListener("click", (e) => {
             
-            let letterInput = e.target.innerText;
-            //console.log(letterInput)
-            if (this.activePhrase.checkLetter(this.activePhrase.phrase, letterInput)) {
-                console.log(letterInput + " is included");
-                this.showMatchedLetter(letterInput);
-                this.checkForWin();
-            } else {
-                lifeCount -= lifeCount;
-                this.removeLife(lifeCount)
-                console.log(letterInput + " is not included");
+            if (e.target.tagName == 'BUTTON') {
+
+                let letterInput = e.target.innerText;
+                let selectedLetterButton = e.target;
+                selectedLetterButton.disabled = true;
+
+                if (this.activePhrase.checkLetter(this.activePhrase.phrase, letterInput)) {
+                    console.log(letterInput + " is included");
+                    this.showMatchedLetter(letterInput);
+                    this.checkForWin();
+                } else {
+                    lifeCount -= 1;
+                    this.removeLife(lifeCount);
+                    console.log(letterInput + " is not included");
+                };
             };
 
         });
