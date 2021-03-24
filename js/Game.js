@@ -120,9 +120,11 @@ let gameOverMessage = document.getElementById('game-over-message');
 
                 if (this.activePhrase.checkLetter(this.activePhrase.phrase, letterInput)) {
                     console.log(letterInput + " is included");
+                    e.target.classList.add('chosen');
                     this.showMatchedLetter(letterInput);
                     this.checkForWin();
                 } else {
+                    e.target.classList.add('wrong');
                     lifeCount -= 1;
                     this.removeLife(lifeCount);
                     console.log(letterInput + " is not included");
