@@ -82,15 +82,27 @@ let gameOverMessage = document.getElementById('game-over-message');
 
 
     gameOver (endGameState) {
+        let gameResetButton = document.getElementById('btn__reset');
+        
         if (endGameState == 'lose') {
             overlayDiv.className= 'lose';
             overlayDiv.style.display = 'block';
             gameOverMessage.innerHTML = "Better Luck Next Time! Please Play Again :)"
+
         } else if (endGameState == 'win') {
             overlayDiv.className= 'win';
             overlayDiv.style.display = 'block';
             gameOverMessage.innerHTML = "You Are Victorious! Please Play Again :)"
         }
+
+        gameResetButton.addEventListener('click', () => {
+            console.log('FIRED')
+            let phraseList = document.querySelectorAll('li.letter');
+            phraseList = Array.from(phraseList);
+            phraseList.forEach(listItem => listItem.remove());
+            
+        });
+
     };
 
 
