@@ -4,11 +4,13 @@
 
 
 class Phrase {
+     
     constructor (phrase) {
          this.phrase = phrase.toLowerCase();
     }
    
     addPhraseToDisplay(phrase) {
+
           let phraseUl = document.createElement('ul');
           phraseUl.innerHTML = "";
           let phraseDiv = document.getElementById('phrase')

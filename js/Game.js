@@ -44,10 +44,10 @@ let gameOverMessage = document.getElementById('game-over-message');
             return li.classList.contains('show');
         }
         if (phraseList.every(isVisible)) {
-            console.log('all revealed')
+            //console.log('all revealed')
             return true;
         } else {
-            console.log('NOT all revealed')
+            //console.log('NOT all revealed')
             return false
             
         }
@@ -55,21 +55,25 @@ let gameOverMessage = document.getElementById('game-over-message');
  
 
     removeLife (livesRemaining) {
-        // LEFT OFF HERE :)
+       
         if (livesRemaining == 4) {
             lifeHearts[4].src = "images/lostHeart.png"
+
         } else if (livesRemaining == 3) {
             lifeHearts[4].src = "images/lostHeart.png"
             lifeHearts[3].src = "images/lostHeart.png"
+
         } else if (livesRemaining == 2) {
             lifeHearts[4].src = "images/lostHeart.png"
             lifeHearts[3].src = "images/lostHeart.png"
             lifeHearts[2].src = "images/lostHeart.png"
+
         } else if (livesRemaining == 1) {
             lifeHearts[4].src = "images/lostHeart.png";
             lifeHearts[3].src = "images/lostHeart.png";
             lifeHearts[2].src = "images/lostHeart.png";
             lifeHearts[1].src = "images/lostHeart.png";
+
         } else if (livesRemaining == 0) {
             lifeHearts[4].src = "images/lostHeart.png";
             lifeHearts[3].src = "images/lostHeart.png";
@@ -78,10 +82,12 @@ let gameOverMessage = document.getElementById('game-over-message');
             lifeHearts[0].src = "images/lostHeart.png";
             this.gameOver('lose');
         }
+
     };
 
 
     gameOver (endGameState) {
+
         let gameResetButton = document.getElementById('btn__reset');
         
         if (endGameState == 'lose') {
@@ -96,11 +102,26 @@ let gameOverMessage = document.getElementById('game-over-message');
         }
 
         gameResetButton.addEventListener('click', () => {
-            console.log('FIRED')
+
             let phraseList = document.querySelectorAll('li.letter');
             phraseList = Array.from(phraseList);
             phraseList.forEach(listItem => listItem.remove());
-            
+
+            let keyboardButtons = document.querySelectorAll('button.key');
+            keyboardButtons = Array.from(keyboardButtons);
+            keyboardButtons.forEach(button => button.classList = "key");
+
+            keyboardButtons.forEach(button => button.disabled = false);
+
+            lifeCount = 5;
+            lifeHearts[4].src = "images/liveHeart.png";
+            lifeHearts[3].src = "images/liveHeart.png";
+            lifeHearts[2].src = "images/liveHeart.png";
+            lifeHearts[1].src = "images/liveHeart.png";
+            lifeHearts[0].src = "images/liveHeart.png";
+
+            this.startGame();
+
         });
 
     };
