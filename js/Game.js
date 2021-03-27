@@ -140,38 +140,29 @@ let gameOverMessage = document.getElementById('game-over-message');
 
     }
 
-    handleInteraction () {
+    handleInteraction (e) {
 
-        let qwertyDiv = document.getElementById('qwerty');
-        
-        
-        qwertyDiv.addEventListener("click", (e) => {
+        if (e.target.tagName == 'BUTTON') {
             
-                if (e.target.tagName == 'BUTTON') {
-                    
-                    let letterInput = e.target.innerText;
-                    let selectedLetterButton = e.target;
-                    selectedLetterButton.disabled = true;
+            let letterInput = e.target.innerText;
+            let selectedLetterButton = e.target;
+            selectedLetterButton.disabled = true;
 
-                    if (this.activePhrase.checkLetter(this.activePhrase.phrase, letterInput)) {
+            if (this.activePhrase.checkLetter(this.activePhrase.phrase, letterInput)) {
 
-                        e.target.classList.add('chosen');
-                        this.showMatchedLetter(letterInput);
+                e.target.classList.add('chosen');
+                this.showMatchedLetter(letterInput);
 
-                        if (this.checkForWin()) {
-                            this.gameOver('win');
-                        };   
-                    } else {
-                        e.target.classList.add('wrong');
-                        this.missed += 1;
-                        this.removeLife(this.missed); 
-                    };
-                };
-            });
+                if (this.checkForWin()) {
+                    this.gameOver('win');
+                };   
+            } else {
+                e.target.classList.add('wrong');
+                this.missed += 1;
+                this.removeLife(this.missed); 
+            };
+        };
     };
-        
-        
-        
 
-    };
+};
 

@@ -2,15 +2,23 @@
  * Project 4 - OOP Game App
  * app.js */
 
-let startButton = document.getElementById('btn__reset')
+let startButton = document.getElementById('btn__reset');
+let game;
 
 startButton.addEventListener('click', () => {
     
-    const game = new Game();
+    game = new Game();
     game.startGame();
-    game.handleInteraction();
+    
 
-})
+});
+
+
+let qwertyDiv = document.getElementById('qwerty');
+qwertyDiv.addEventListener('click', (clickedButton) => {
+    game.handleInteraction(clickedButton);
+});
+
 
 
 

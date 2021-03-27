@@ -42,17 +42,3 @@ class Phrase {
      };
 
 };
-
-
-
-
-//      showMatchedLetter(inputArr, inputLetter) {
-//           [...inputArr].forEach((li) => {
-//                if (li.textContent == inputLetter) {
-//                     li.classList.remove('hide');
-//                     li.classList.add('show');
-//                };
-//           })
-//      };
-    
-
