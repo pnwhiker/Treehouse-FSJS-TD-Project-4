@@ -142,8 +142,10 @@ let gameOverMessage = document.getElementById('game-over-message');
 
     handleInteraction () {
 
-        document.querySelectorAll('.key').forEach(keyboardButton => 
-            keyboardButton.addEventListener("click", (e) => {
+        let qwertyDiv = document.getElementById('qwerty');
+        
+        
+        qwertyDiv.addEventListener("click", (e) => {
             
                 if (e.target.tagName == 'BUTTON') {
                     
@@ -158,19 +160,18 @@ let gameOverMessage = document.getElementById('game-over-message');
 
                         if (this.checkForWin()) {
                             this.gameOver('win');
-                        } else {
-                            e.target.classList.add('wrong');
-                            this.missed += 1;
-                            this.removeLife(this.missed);
-                            console.log(letterInput + " is not included");
-                        };
+                        };   
+                    } else {
+                        e.target.classList.add('wrong');
+                        this.missed += 1;
+                        this.removeLife(this.missed); 
                     };
-                }
-            })
-        );
+                };
+            });
+    };
+        
         
         
 
     };
 
-}
