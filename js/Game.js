@@ -54,27 +54,27 @@ let gameOverMessage = document.getElementById('game-over-message');
     };
  
 
-    removeLife (livesRemaining) {
+    removeLife (livesDepleted) {
        
-        if (livesRemaining == 4) {
+        if (livesDepleted == 1) {
             lifeHearts[4].src = "images/lostHeart.png"
 
-        } else if (livesRemaining == 3) {
+        } else if (livesDepleted == 2) {
             lifeHearts[4].src = "images/lostHeart.png"
             lifeHearts[3].src = "images/lostHeart.png"
 
-        } else if (livesRemaining == 2) {
+        } else if (livesDepleted == 3) {
             lifeHearts[4].src = "images/lostHeart.png"
             lifeHearts[3].src = "images/lostHeart.png"
             lifeHearts[2].src = "images/lostHeart.png"
 
-        } else if (livesRemaining == 1) {
+        } else if (livesDepleted == 4) {
             lifeHearts[4].src = "images/lostHeart.png";
             lifeHearts[3].src = "images/lostHeart.png";
             lifeHearts[2].src = "images/lostHeart.png";
             lifeHearts[1].src = "images/lostHeart.png";
 
-        } else if (livesRemaining == 0) {
+        } else if (livesDepleted == 5) {
             lifeHearts[4].src = "images/lostHeart.png";
             lifeHearts[3].src = "images/lostHeart.png";
             lifeHearts[2].src = "images/lostHeart.png";
@@ -113,7 +113,7 @@ let gameOverMessage = document.getElementById('game-over-message');
 
             keyboardButtons.forEach(button => button.disabled = false);
 
-            lifeCount = 5;
+            this.missed = 0;
             lifeHearts[4].src = "images/liveHeart.png";
             lifeHearts[3].src = "images/liveHeart.png";
             lifeHearts[2].src = "images/liveHeart.png";
@@ -142,29 +142,33 @@ let gameOverMessage = document.getElementById('game-over-message');
 
     handleInteraction () {
 
-        let qwertyDiv = document.getElementById('qwerty')
-        qwertyDiv.addEventListener("click", (e) => {
+        document.querySelectorAll('.key').forEach(keyboardButton => 
+            keyboardButton.addEventListener("click", (e) => {
             
-            if (e.target.tagName == 'BUTTON') {
+                if (e.target.tagName == 'BUTTON') {
+                    
+                    let letterInput = e.target.innerText;
+                    let selectedLetterButton = e.target;
+                    selectedLetterButton.disabled = true;
 
-                let letterInput = e.target.innerText;
-                let selectedLetterButton = e.target;
-                selectedLetterButton.disabled = true;
+                    if (this.activePhrase.checkLetter(this.activePhrase.phrase, letterInput)) {
 
-                if (this.activePhrase.checkLetter(this.activePhrase.phrase, letterInput)) {
-                    console.log(letterInput + " is included");
-                    e.target.classList.add('chosen');
-                    this.showMatchedLetter(letterInput);
-                    this.checkForWin();
-                } else {
-                    e.target.classList.add('wrong');
-                    lifeCount -= 1;
-                    this.removeLife(lifeCount);
-                    console.log(letterInput + " is not included");
-                };
-            };
+                        e.target.classList.add('chosen');
+                        this.showMatchedLetter(letterInput);
 
-        });
+                        if (this.checkForWin()) {
+                            this.gameOver('win');
+                        } else {
+                            e.target.classList.add('wrong');
+                            this.missed += 1;
+                            this.removeLife(this.missed);
+                            console.log(letterInput + " is not included");
+                        };
+                    };
+                }
+            })
+        );
+        
         
 
     };
