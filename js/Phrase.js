@@ -34,6 +34,7 @@ class Phrase {
      };
      
      checkLetter(inputPhrase, inputLetter) {
+          console.log(`input phrase in checkletter method is ${inputPhrase}`);
           if (inputPhrase.includes(inputLetter)) {
                return true;
           } else {

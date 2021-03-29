@@ -55,6 +55,8 @@ let gameOverMessage = document.getElementById('game-over-message');
  
 
     removeLife (livesDepleted) {
+
+        this.missed = this.missed -1;
        
         if (livesDepleted == 1) {
             lifeHearts[4].src = "images/lostHeart.png"
@@ -158,7 +160,6 @@ let gameOverMessage = document.getElementById('game-over-message');
                 };   
             } else {
                 e.target.classList.add('wrong');
-                this.missed += 1;
                 this.removeLife(this.missed); 
             };
         };
