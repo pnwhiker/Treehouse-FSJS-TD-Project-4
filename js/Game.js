@@ -2,7 +2,6 @@
  * Project 4 - OOP Game App
  * Game.js */
 
-let lifeCount = 5;
 let lifeHearts = Array.from(document.querySelectorAll('img[alt="Heart Icon"]'));
 const overlayDiv = document.getElementById('overlay');
 let gameOverMessage = document.getElementById('game-over-message');
@@ -32,6 +31,7 @@ let gameOverMessage = document.getElementById('game-over-message');
 
         overlayDiv.style.display = 'none';
         this.activePhrase = this.getRandomPhrase();
+        console.log(this.activePhrase);
         this.activePhrase.addPhraseToDisplay(this.activePhrase.phrase)
         
     }
@@ -54,29 +54,30 @@ let gameOverMessage = document.getElementById('game-over-message');
     };
  
 
-    removeLife (livesDepleted) {
+    removeLife () {
 
-        this.missed = this.missed -1;
+        this.missed = this.missed + 1;
+        //console.log(this.missed);
        
-        if (livesDepleted == 1) {
+        if (this.missed == 1) {
             lifeHearts[4].src = "images/lostHeart.png"
 
-        } else if (livesDepleted == 2) {
+        } else if (this.missed == 2) {
             lifeHearts[4].src = "images/lostHeart.png"
             lifeHearts[3].src = "images/lostHeart.png"
 
-        } else if (livesDepleted == 3) {
+        } else if (this.missed == 3) {
             lifeHearts[4].src = "images/lostHeart.png"
             lifeHearts[3].src = "images/lostHeart.png"
             lifeHearts[2].src = "images/lostHeart.png"
 
-        } else if (livesDepleted == 4) {
+        } else if (this.missed == 4) {
             lifeHearts[4].src = "images/lostHeart.png";
             lifeHearts[3].src = "images/lostHeart.png";
             lifeHearts[2].src = "images/lostHeart.png";
             lifeHearts[1].src = "images/lostHeart.png";
 
-        } else if (livesDepleted == 5) {
+        } else if (this.missed == 5) {
             lifeHearts[4].src = "images/lostHeart.png";
             lifeHearts[3].src = "images/lostHeart.png";
             lifeHearts[2].src = "images/lostHeart.png";
@@ -90,8 +91,24 @@ let gameOverMessage = document.getElementById('game-over-message');
 
     gameOver (endGameState) {
 
-        let gameResetButton = document.getElementById('btn__reset');
-        
+        let phraseList = document.querySelectorAll('li.letter');
+        phraseList = Array.from(phraseList);
+        phraseList.forEach(listItem => listItem.remove());
+
+        let keyboardButtons = document.querySelectorAll('button.key');
+        keyboardButtons = Array.from(keyboardButtons);
+        keyboardButtons.forEach(button => button.classList = "key");
+
+        keyboardButtons.forEach(button => button.disabled = false);
+        this.activePhrase = null;
+
+        this.missed = 0;
+        lifeHearts[4].src = "images/liveHeart.png";
+        lifeHearts[3].src = "images/liveHeart.png";
+        lifeHearts[2].src = "images/liveHeart.png";
+        lifeHearts[1].src = "images/liveHeart.png";
+        lifeHearts[0].src = "images/liveHeart.png";
+
         if (endGameState == 'lose') {
             overlayDiv.className= 'lose';
             overlayDiv.style.display = 'block';
@@ -103,36 +120,12 @@ let gameOverMessage = document.getElementById('game-over-message');
             gameOverMessage.innerHTML = "You Are Victorious! Please Play Again :)"
         }
 
-        gameResetButton.addEventListener('click', () => {
-
-            let phraseList = document.querySelectorAll('li.letter');
-            phraseList = Array.from(phraseList);
-            phraseList.forEach(listItem => listItem.remove());
-
-            let keyboardButtons = document.querySelectorAll('button.key');
-            keyboardButtons = Array.from(keyboardButtons);
-            keyboardButtons.forEach(button => button.classList = "key");
-
-            keyboardButtons.forEach(button => button.disabled = false);
-
-            this.missed = 0;
-            lifeHearts[4].src = "images/liveHeart.png";
-            lifeHearts[3].src = "images/liveHeart.png";
-            lifeHearts[2].src = "images/liveHeart.png";
-            lifeHearts[1].src = "images/liveHeart.png";
-            lifeHearts[0].src = "images/liveHeart.png";
-
-            this.startGame();
-
-        });
-
     };
 
 
     showMatchedLetter(matchedLetter) {
         let phraseList = document.querySelectorAll('li.letter');
         phraseList = Array.from(phraseList);
-        //console.log(phraseList);
         phraseList.forEach(listItem => {
             if (listItem.innerHTML == matchedLetter ) {
                 listItem.classList.remove('hide')
@@ -157,10 +150,10 @@ let gameOverMessage = document.getElementById('game-over-message');
 
                 if (this.checkForWin()) {
                     this.gameOver('win');
-                };   
+                }  
             } else {
                 e.target.classList.add('wrong');
-                this.removeLife(this.missed); 
+                this.removeLife(); 
             };
         };
     };
